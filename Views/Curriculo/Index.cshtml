@@ -1,0 +1,44 @@
+﻿@using ControleCurriculo.Models
+@model List<CurriculoViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listagem de Currículos</h2>
+
+<a href="/curriculo/create">Novo Currículo</a>
+<br /><br />
+
+<table class="table table-responsive">
+    <tr>
+        <th>Ações</th>
+        <th>CPF</th>
+        <th>Nome</th>
+    </tr>
+
+    @foreach (var curriculo in Model)
+    {
+        <tr>
+            <td>
+                <a href="/curriculo/Edit?id=@curriculo.Id">
+                    <img src="~/img/edit.png" alt="Editar" width="20" height="20" />
+                </a>
+                <a href="javascript:void(0);" onclick="apagarCurriculo(@curriculo.Id)">
+                    <img src="~/img/delete.png" alt="Excluir" width="20" height="20" />
+                </a>
+                <a href="/curriculo/Exibir?id=@curriculo.Id">
+                    <img src="~/img/view.png" alt="Exibir" width="20" height="20" />
+                </a>
+            </td>
+            <td>@curriculo.Cpf</td>
+            <td>@curriculo.Nome</td>
+        </tr>
+    }
+</table>
+
+<script>
+    function apagarCurriculo(id) {
+        if (confirm('Confirma a exclusão deste currículo? Esta ação também apagará as formações, experiências e idiomas associados.'))
+            location.href = '/curriculo/Delete?id=' + id;
+    }
+</script>

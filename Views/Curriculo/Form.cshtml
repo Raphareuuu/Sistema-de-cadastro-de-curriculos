@@ -1,0 +1,125 @@
+﻿@using ControleCurriculo.Models
+@model CurriculoViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@(Model.Id == 0 ? "Novo Currículo" : "Editar Currículo")</h2>
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+<form asp-action="Salvar" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <fieldset>
+        <legend>Dados Pessoais</legend>
+
+        <label>CPF</label>
+        <input type="text" asp-for="Cpf" />
+        <br />
+
+        <label>Nome</label>
+        <input type="text" asp-for="Nome" />
+        <br />
+
+        <label>Endereço</label>
+        <input type="text" asp-for="Endereco" />
+        <br />
+
+        <label>Telefone</label>
+        <input type="text" asp-for="Telefone" />
+        <br />
+
+        <label>E-mail</label>
+        <input type="email" asp-for="Email" />
+        <br />
+
+        <label>Pretensão Salarial</label>
+        <input type="number" step="0.01" asp-for="PretensaoSalarial" />
+        <br />
+
+        <label>Cargo Pretendido</label>
+        <input type="text" asp-for="CargoPretendido" />
+        <br />
+    </fieldset>
+
+    <fieldset>
+        <legend>Formação Acadêmica (a 1ª é obrigatória)</legend>
+
+        @for (int i = 0; i < Model.Formacoes.Count; i++)
+        {
+            <div>
+                <strong>Formação @(i + 1)</strong><br />
+                <input type="hidden" asp-for="Formacoes[i].Id" />
+                <input type="hidden" asp-for="Formacoes[i].CurriculoId" />
+
+                Curso:
+                <input type="text" asp-for="Formacoes[i].Curso" />
+
+                Instituição:
+                <input type="text" asp-for="Formacoes[i].Instituicao" />
+
+                Ano de conclusão:
+                <input type="number" asp-for="Formacoes[i].AnoConclusao" />
+                <br /><br />
+            </div>
+        }
+    </fieldset>
+
+    <fieldset>
+        <legend>Experiência Profissional</legend>
+
+        @for (int i = 0; i < Model.Experiencias.Count; i++)
+        {
+            <div>
+                <strong>Experiência @(i + 1)</strong><br />
+                <input type="hidden" asp-for="Experiencias[i].Id" />
+                <input type="hidden" asp-for="Experiencias[i].CurriculoId" />
+
+                Empresa:
+                <input type="text" asp-for="Experiencias[i].Empresa" />
+
+                Cargo:
+                <input type="text" asp-for="Experiencias[i].Cargo" />
+
+                Período:
+                <input type="text" asp-for="Experiencias[i].Periodo" placeholder="ex: Jan/2020 - Dez/2022" />
+                <br />
+
+                Descrição:
+                <textarea asp-for="Experiencias[i].Descricao" rows="2" cols="50"></textarea>
+                <br /><br />
+            </div>
+        }
+    </fieldset>
+
+    <fieldset>
+        <legend>Idiomas</legend>
+
+        @for (int i = 0; i < Model.Idiomas.Count; i++)
+        {
+            <div>
+                <strong>Idioma @(i + 1)</strong><br />
+                <input type="hidden" asp-for="Idiomas[i].Id" />
+                <input type="hidden" asp-for="Idiomas[i].CurriculoId" />
+
+                Idioma:
+                <input type="text" asp-for="Idiomas[i].Nome" />
+
+                Nível:
+                <select asp-for="Idiomas[i].Nivel">
+                    <option value="">Selecione</option>
+                    <option value="Básico">Básico</option>
+                    <option value="Intermediário">Intermediário</option>
+                    <option value="Avançado">Avançado</option>
+                    <option value="Fluente">Fluente</option>
+                </select>
+                <br /><br />
+            </div>
+        }
+    </fieldset>
+
+    <input type="submit" value="Salvar Currículo" />
+
+</form>
