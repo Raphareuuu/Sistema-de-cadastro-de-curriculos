@@ -40,9 +40,8 @@ A exclusão de um currículo remove automaticamente (`ON DELETE CASCADE`) todos 
 
 ### Passos
 
-1. Clone o repositório:
+1. Clone o repositório
 
-2. 
 2. Crie um banco de dados no PostgreSQL (ex: `controlecurriculo`)
 
 3. Execute os scripts SQL de criação das tabelas (disponíveis na seção abaixo) no seu banco
@@ -56,7 +55,7 @@ A exclusão de um currículo remove automaticamente (`ON DELETE CASCADE`) todos 
    }
 ```
 
-5. Rode o projeto:
+5. Rode o projeto
 
 6. 
 ## 🧱 Scripts SQL
