@@ -57,7 +57,6 @@ A exclusão de um currículo remove automaticamente (`ON DELETE CASCADE`) todos 
 
 5. Rode o projeto
 
-6. 
 ## 🧱 Scripts SQL
 
 ```sql
@@ -97,9 +96,6 @@ CREATE TABLE idioma (
 );
 ```
 
-## 📸 Preview
-
-*(adicionar aqui prints da tela de listagem e da tela de currículo formatado)*
 
 ## 👤 Autor
 
